@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'
 
 const BoatDetails = (props) => {
+
+  let { id } = useParams()
 
   const [selectedBoat, setBoat] = useState('')
 
   useEffect(() => {
-    
-  }, [])
+    let selectedBoat = props.boats.find(
+      (boat) => boat.id === parseInt(id)
+    )
+    setBoat(selectedBoat)
+  }, [props.boats, id])
 
   return selectedBoat ? (
     <div className="detail">
